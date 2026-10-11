@@ -20,7 +20,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 
 ## 2. Overview of the 13 Tables
 
-### 2.1 Core Clinical and Monitoring Tables
+### 2.1a Core Clinical and Monitoring Tables
 
 1. **Patients** — stores a non-identifying patient reference and patient status.
 2. **Observations** — stores individual vital-sign measurements.
@@ -29,7 +29,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 5. **Staff** — stores staff references, roles, and account status.
 6. **Interventions** — records actions performed in response to a patient's condition or an alert.
 
-### 2.2 Organization and Workflow Tables
+### 2.1b Organization and Workflow Tables
 
 7. **Departments** — represents hospital departments.
 8. **Wards** — represents wards belonging to departments.
@@ -39,7 +39,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 12. **Handover Records** — records information transferred between outgoing and incoming shifts.
 13. **Handover Items** — records patient-specific alerts, tasks, and follow-up items included in a handover.
 
-### 2.3 Patients Table Definition
+### 2.1.1 Patients Table Definition
 
 **Purpose:** Stores a unique, non-identifying reference for each patient record.
 
@@ -55,7 +55,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 4. Changing a record to inactive must not delete its observations, alerts, interventions, or handover history.
 5. Use fictional patient data in this learning prototype.
 
-### 2.4 Observations Table Definition
+### 2.1.2 Observations Table Definition
 
 **Purpose:** Stores each individual vital-sign measurement recorded for a patient. Each measurement is a separate observation record.
 
@@ -81,7 +81,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 6. New measurements must create new observation records rather than overwrite earlier measurements.
 7. Use fictional data in this learning prototype.
 
-### 2.5 Alerts Table Definition
+### 2.1.3 Alerts Table Definition
 
 **Purpose:** Stores alerts generated when an observation meets a configured, approved rule. An alert requires appropriate review and follow-up; acknowledgement alone does not resolve it.
 
@@ -105,7 +105,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 7. Clinical rules and escalation procedures require appropriate clinical approval before real-world use.
 8. Use fictional data in this learning prototype.
 
-### 2.6 Alert Events Table Definition
+### 2.1.4 Alert Events Table Definition
 
 **Purpose:** Preserves a chronological history of actions and status changes associated with an alert.
 
@@ -126,7 +126,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 5. Acknowledgement must not be treated as resolution.
 6. Use fictional data in this learning prototype.
 
-### 2.7 Staff Table Definition
+### 2.1.5 Staff Table Definition
 
 **Purpose:** Stores staff references, roles, and account status.
 
@@ -143,7 +143,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 3. Account status does not prove attendance or completion of a clinical action.
 4. Authentication credentials must not be stored in this table.
 
-### 2.8 Interventions Table Definition
+### 2.1.6 Interventions Table Definition
 
 **Purpose:** Records actions reported to have been performed for a patient, including actions related to alerts.
 
@@ -166,7 +166,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 3. Late documentation must preserve the reported action time and actual record-save time.
 4. Recording an intervention does not automatically resolve an alert or prove patient recovery.
 
-### 2.9 Departments Table Definition
+### 2.1.7 Departments Table Definition
 
 **Purpose:** Represents hospital departments to which wards belong.
 
@@ -180,7 +180,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 1. Each department must have a unique `department_id`.
 2. Inactive departments must not cause historical ward or patient records to be deleted.
 
-### 2.10 Wards Table Definition
+### 2.1.8 Wards Table Definition
 
 **Purpose:** Represents wards within departments.
 
@@ -195,7 +195,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 1. Each ward must reference an existing department.
 2. Historical assignments and handovers must remain traceable if a ward becomes inactive.
 
-### 2.11 Shifts Table Definition
+### 2.1.9 Shifts Table Definition
 
 **Purpose:** Defines reusable shift categories and their scheduled times.
 
@@ -212,7 +212,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 3. Assignment dates must make the shift period unambiguous.
 4. Scheduled times do not prove actual attendance.
 
-### 2.12 Staff Shift Assignments Table Definition
+### 2.1.10 Staff Shift Assignments Table Definition
 
 **Purpose:** Records which staff member is assigned to which ward and shift during a defined period.
 
@@ -233,7 +233,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 2. Assignment history must be preserved.
 3. Check-in and check-out records do not, by themselves, prove physical presence or completion of clinical duties.
 
-### 2.13 Patient Staff Assignments Table Definition
+### 2.1.11 Patient Staff Assignments Table Definition
 
 **Purpose:** Records which patient is linked to a staff shift assignment for a defined period.
 
@@ -252,7 +252,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 3. Historical assignments must be retained when responsibility changes.
 4. When linked to an observation, the assignment must belong to the same patient and be valid for the relevant period.
 
-### 2.14 Handover Records Table Definition
+### 2.1.12 Handover Records Table Definition
 
 **Purpose:** Records ward-level transfer of information between outgoing and incoming shift assignments.
 
@@ -275,7 +275,7 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 3. Acknowledgement means the handover was received; it does not prove clinical stability or resolve linked alerts.
 4. Urgent alerts must follow approved escalation procedures without waiting for routine handover.
 
-### 2.15 Handover Items Table Definition
+### 2.1.13 Handover Items Table Definition
 
 **Purpose:** Records patient-specific issues and follow-up tasks included in a handover.
 
