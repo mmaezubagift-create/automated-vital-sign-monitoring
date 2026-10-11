@@ -39,6 +39,21 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 12. **Handover Records** — records information transferred between outgoing and incoming shifts.
 13. **Handover Items** — records patient-specific alerts, tasks, and follow-up items included in a handover.
 
+### 2.3 Patients Table Definition
+
+**Purpose:** Stores a unique, non-identifying reference for each patient record.
+
+| Field | Description | Constraint |
+|---|---|---|
+| `patient_id` | Unique identifier for a patient record | Primary key (PK); required and unique |
+| `patient_status` | Indicates whether the patient record is active or inactive | Required; permitted values: `active`, `inactive` |
+
+**Data integrity rules:**
+1. Every patient record must have a unique `patient_id`.
+2. `patient_status` describes the status of the record, not whether the patient is currently admitted or discharged.
+3. Inactive records must be retained for historical traceability.
+4. Changing a record to inactive must not delete its observations, alerts, interventions, or handover history.
+5. Use fictional patient data in this learning prototype.
 ---
 
 ## 3. Primary Keys and Foreign Keys
