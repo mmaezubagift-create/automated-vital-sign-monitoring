@@ -54,6 +54,33 @@ The system supports vital-sign recording, rule-based alerts, intervention docume
 3. Inactive records must be retained for historical traceability.
 4. Changing a record to inactive must not delete its observations, alerts, interventions, or handover history.
 5. Use fictional patient data in this learning prototype.
+
+### 2.4 Observations Table Definition
+
+**Purpose:** Stores each individual vital-sign measurement recorded for a patient. Each measurement is a separate observation record.
+
+| Field | Description | Constraint |
+|---|---|---|
+| `observation_id` | Unique identifier for the observation | Primary key (PK); required and unique |
+| `patient_id` | Identifies the patient associated with the measurement | Foreign key (FK) referencing Patients; required |
+| `vital_type` | Type of measurement, such as pulse or temperature | Required |
+| `value` | Measured numerical value | Required; must be valid for the measurement type |
+| `unit` | Unit used for the measurement | Required; must match the measurement type |
+| `measured_at` | Date and time the measurement was taken | Required; reported measurement time |
+| `recorded_at` | Date and time the observation was saved in the system | Required; generated automatically by the system where supported |
+| `observer_id` | Staff member who measured the vital sign | Foreign key referencing Staff; required when known |
+| `recorded_by` | Staff member who entered the observation | Foreign key referencing Staff; required |
+| `patient_assignment_id` | Patient-staff assignment associated with the observation | Optional foreign key referencing Patient Staff Assignments |
+
+**Data integrity rules:**
+1. Each observation must have a unique `observation_id`.
+2. Each observation must reference an existing patient.
+3. `measured_at` and `recorded_at` must remain distinct because a measurement may be entered later.
+4. The value and unit must be appropriate for the specified `vital_type`.
+5. When `patient_assignment_id` is supplied, the assignment must belong to the same patient and be valid for the relevant period.
+6. New measurements must create new observation records rather than overwrite earlier measurements.
+7. Use fictional data in this learning prototype.
+
 ---
 
 ## 3. Primary Keys and Foreign Keys
